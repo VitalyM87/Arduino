@@ -1,11 +1,3 @@
-/*
-Exploring Arduino, Second Edition
-Code Listing 3-3: Automatic Nightlight Sketch
-https://www.exploringarduino.com/content2/ch3
-Copyright 2019 Jeremy Blum ( https://www.jeremyblum.com )
-Licensed under MIT ( https://github.com/sciguy14/Exploring-Arduino-2nd-Edition/blob/master/LICENSE.md )
-*/
-
 // Automatic Night Light
 
 const int LED=9;        // LED Anode on pin 9 (PWM)
@@ -17,6 +9,7 @@ int val = 0;             // Variable to hold the analog reading
 void setup()
 {
   pinMode(LED, OUTPUT); // Set LED pin as output
+  Serial.begin(9600);
 }
 
 void loop()
@@ -25,4 +18,6 @@ void loop()
   val = map(val, MIN_LIGHT, MAX_LIGHT, 255, 0); // Map the light reading
   val = constrain(val, 0, 255);                 // Constrain light value
   analogWrite(LED, val);                       // Control the White LED
+  Serial.println(val);
+  delay(1000);
 }
